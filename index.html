@@ -544,7 +544,7 @@ input[type=range]{accent-color:var(--brand)}
             <li>Install the free Scriptable app from the App Store.</li>
             <li>Paste the link the widget should open, then copy the script below. It contains your current notes, so copy it again when you unlock more.</li>
             <li>In Scriptable, tap +, paste, and name it NoteSense.</li>
-            <li>Long-press your home screen, tap Edit, then Add Widget. Choose Scriptable, swipe to the medium size, and add it. Long-press the new widget, choose Edit Widget, and pick NoteSense as the script.</li>
+            <li>Long-press your home screen, tap Edit, then Add Widget. Choose Scriptable, swipe to the medium size, and add it. Long-press the new widget, choose Edit Widget, pick NoteSense as the script, and set When Interacting to Run Script.</li>
             <li>Copy the script again whenever you unlock a note, edit a cue or change note names, then paste it over the old one in Scriptable.</li>
           </ol>
           <label for="applink"><b>Link the widget opens</b></label>
@@ -1018,7 +1018,6 @@ const pageBg = dyn("#ffffff", "#111216"), textC = dyn("#17181c", "#f1f1f3"), mut
 const df = new DateFormatter(); df.useNoDateStyle(); df.useShortTimeStyle();
 const nextAt = df.string(new Date((hour + 1) * 36e5));
 const w = new ListWidget();
-if (link) w.url = link + "#recall-" + slug;
 w.refreshAfterDate = new Date((hour + 1) * 36e5);
 const txt = (stack, s, font, color, lines) => { const t = stack.addText(s); t.font = font; t.textColor = color; t.lineLimit = lines || 1; t.minimumScaleFactor = 0.6; return t; };
 
@@ -1063,7 +1062,9 @@ if (fam.startsWith("accessory")) {
   if (shown < notes.length) txt(chips, " +" + (notes.length - shown), Font.boldRoundedSystemFont(11), muteC);
   txt(col, "New note at " + nextAt, Font.semiboldRoundedSystemFont(11), brandC);
 }
+// Tapping the widget runs this script (When Interacting: Run Script), which opens the check page.
 if (config.runsInWidget || config.runsInAccessoryWidget) Script.setWidget(w);
+else if (link) Safari.open(link + "#recall-" + slug);
 else if (fam === "small") await w.presentSmall();
 else await w.presentMedium();
 Script.complete();`;
