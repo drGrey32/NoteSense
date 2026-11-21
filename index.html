@@ -1026,23 +1026,25 @@ if (fam.startsWith("accessory")) {
   else if (fam === "accessoryCircular") { w.addAccessoryWidgetBackground = true; const t = txt(w, note, Font.heavyRoundedSystemFont(22), Color.white()); t.centerAlignText(); }
   else { w.addAccessoryWidgetBackground = true; txt(w, "Imagine " + note, Font.heavyRoundedSystemFont(17), Color.white()); txt(w, cue || "Tap to check", Font.mediumRoundedSystemFont(13), Color.white(), 2); }
 } else if (fam === "small") {
-  w.backgroundColor = new Color(bg);
+  w.backgroundColor = pageBg;
   w.setPadding(14, 16, 14, 16);
-  txt(w, "Imagine", Font.semiboldRoundedSystemFont(15), new Color(ink));
+  const bar = w.addStack(); bar.size = new Size(36, 6); bar.cornerRadius = 3; bar.backgroundColor = new Color(bg);
+  w.addSpacer(6);
+  txt(w, "Imagine", Font.semiboldRoundedSystemFont(15), muteC);
   w.addSpacer();
-  txt(w, note, Font.heavyRoundedSystemFont(64), new Color(ink));
+  txt(w, note, Font.heavyRoundedSystemFont(60), textC);
   w.addSpacer();
-  txt(w, "Tap to check", Font.mediumRoundedSystemFont(13), new Color(ink, 0.85));
+  txt(w, "Tap to check", Font.mediumRoundedSystemFont(13), brandC);
 } else {
   w.backgroundColor = pageBg;
   w.setPadding(12, 12, 12, 14);
   const row = w.addStack(); row.layoutHorizontally(); row.centerAlignContent(); row.spacing = 14;
-  const card = row.addStack(); card.layoutVertically(); card.size = new Size(124, 124); card.cornerRadius = 24; card.backgroundColor = new Color(bg); card.setPadding(10, 12, 10, 12);
-  txt(card, "Imagine", Font.semiboldRoundedSystemFont(13), new Color(ink));
+  const card = row.addStack(); card.layoutVertically(); card.size = new Size(124, 124); card.cornerRadius = 24; card.backgroundColor = new Color(bg, 0.22); card.borderColor = new Color(bg); card.borderWidth = 4; card.setPadding(10, 12, 10, 12);
+  txt(card, "Imagine", Font.semiboldRoundedSystemFont(13), muteC);
   card.addSpacer();
-  txt(card, note, Font.heavyRoundedSystemFont(note.length > 2 ? 30 : 50), new Color(ink));
+  txt(card, note, Font.heavyRoundedSystemFont(note.length > 2 ? 30 : 50), textC);
   card.addSpacer();
-  txt(card, "Tap to check", Font.mediumRoundedSystemFont(11), new Color(ink, 0.85));
+  txt(card, "Tap to check", Font.semiboldRoundedSystemFont(11), brandC);
   const col = row.addStack(); col.layoutVertically(); col.spacing = 5;
   const head = col.addStack(); head.layoutHorizontally(); head.centerAlignContent(); head.spacing = 6;
   if (pipData) { const im = head.addImage(Image.fromData(Data.fromBase64String(pipData))); im.imageSize = new Size(32, 32); }
@@ -1055,8 +1057,9 @@ if (fam.startsWith("accessory")) {
     const wd = n.length > 2 ? 40 : n.length > 1 ? 28 : 24;
     if (used + wd > 186) break;
     const ch = chips.addStack(); ch.size = new Size(wd, 22); ch.cornerRadius = 11; ch.centerAlignContent();
-    ch.backgroundColor = new Color(c, n === note ? 1 : 0.3);
-    const t = txt(ch, n, Font.boldRoundedSystemFont(11), n === note ? new Color(i) : textC); t.minimumScaleFactor = 0.5;
+    ch.backgroundColor = new Color(c, 0.25);
+    if (n === note) { ch.borderColor = new Color(c); ch.borderWidth = 2; }
+    const t = txt(ch, n, Font.boldRoundedSystemFont(11), textC); t.minimumScaleFactor = 0.5;
     used += wd + 4; shown++;
   }
   if (shown < notes.length) txt(chips, " +" + (notes.length - shown), Font.boldRoundedSystemFont(11), muteC);
