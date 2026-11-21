@@ -24,3 +24,7 @@ Open the link in Chrome, tap the menu, then **Install app**. Long-press the icon
 | `.nojekyll` | Tells GitHub Pages to serve the files as they are |
 
 Progress is stored on your device. Use **More → Settings → Back up your progress** to move it between devices.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
