@@ -5,7 +5,7 @@ Works on iPhone, Android and desktop as an installable web app.
 
 ## Install on iPhone
 
-1. Open **https://drgrey32.github.io/notesense/** in Safari.
+1. Open **https://drgrey32.github.io/NoteSense/** in Safari.
 2. Tap **⋯**, then **Share**, then **Add to Home Screen**. Keep **Open as Web App** on and tap **Add**.
 3. Open NoteSense from the new icon. Always use the icon: it keeps its own progress, separate from Safari.
 
